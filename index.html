@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Priyasha Sharma — Cloud & DevOps Portfolio</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+
+  <style>
+    :root{
+      --accent-from: #8b5cf6;
+      --accent-to:   #6366f1;
+      --accent-2-from:#ec4899;
+      --accent-2-to:  #7c3aed;
+
+      --bg-dark: #0b1220;
+      --text-dark: #e6eef8;
+      --muted-dark: #9aa5b3;
+      --card-dark: rgba(17,24,39,0.9);
+
+      --bg-light: #f8fafc;
+      --text-light: #0f172a;
+      --muted-light: #475569;
+      --card-light: rgba(255,255,255,0.95);
+    }
+
+    /* Base theme uses CSS variables via body class */
+    body { 
+      background: var(--bg-dark); 
+      color: var(--text-dark); 
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; 
+      -webkit-font-smoothing:antialiased; 
+      font-size: 18px; /* Increased base font size */
+      line-height: 1.7; /* Increased line height for better readability */
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.light { 
+      background: var(--bg-light); 
+      color: #1a202c; /* Darker text for better contrast in light mode */
+    }
+
+    /* Card */
+    .card {
+      background: var(--card-dark);
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 12px 40px rgba(2,6,23,0.55);
+      border-radius: 14px;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+    body.light .card {
+      background: var(--card-light);
+      border-color: rgba(15,23,42,0.04);
+      box-shadow: 0 10px 30px rgba(2,6,23,0.06);
+    }
+
+    /* Badge */
+    .badge {
+      display:inline-block;
+      font-weight:600;
+      font-size:.85rem; /* Increased badge font size */
+      padding:.35rem .75rem; /* Increased badge padding */
+      border-radius:999px;
+      color:#fff;
+      background-image:linear-gradient(90deg,var(--accent-from),var(--accent-to));
+      box-shadow:0 8px 30px rgba(99,102,241,0.12);
+    }
+    .badge-2 { background-image:linear-gradient(90deg,var(--accent-2-from),var(--accent-2-to)); box-shadow:0 8px 30px rgba(124,58,237,0.08); }
+
+    /* Project card */
+    .project-card { overflow:hidden; transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s, border-color .28s; border:1px solid transparent; border-radius:12px; }
+    .project-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(2,6,23,0.55); border-color: rgba(124,58,237,0.12); }
+    .project-thumb { height:140px; width:100%; object-fit:cover; display:block; border-radius:8px; }
+
+    /* Skills */
+    .skill { 
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); 
+      border: 1px solid rgba(255,255,255,0.03); 
+      padding:1.5rem; /* Increased padding */
+      border-radius:10px; 
+      transition: transform .22s, box-shadow .22s; 
+    }
+    .skill:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(2,6,23,0.38); }
+    body.light .skill { background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01)); border-color: rgba(15,23,42,0.04); }
+
+    /* Icons in skill list */
+    .skill-li { display:flex; gap:0.75rem; align-items:center; }
+    .skill-icon { min-width:32px; min-height:32px; display:inline-flex; align-items:center; justify-content:center; border-radius:6px; background:linear-gradient(90deg,var(--accent-from),var(--accent-to)); color:#fff; padding:6px; }
+
+    /* Modal backdrop */
+    .modal-backdrop { 
+      background: rgba(2,6,23,0.6); 
+      backdrop-filter: blur(6px); 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* header solid black */
+    header { background: rgba(0,0,0,0.96); }
+    body.light header { 
+      background: rgba(255,255,255,0.96); 
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    /* hero title gradient */
+    .hero-title { 
+      background-image: linear-gradient(90deg,var(--accent-from),var(--accent-to)); 
+      -webkit-background-clip:text; 
+      background-clip:text; 
+      color:transparent; 
+      font-weight: 800;
+      text-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    /* small animations */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: translateY(0);} }
+    .animate-fade-in { animation: fadeIn .9s ease forwards; }
+    .animate-fade-in-delay { animation: fadeIn .9s ease .4s forwards; }
+
+    /* chat scrollbar */
+    .chat-scroll::-webkit-scrollbar { width:6px; }
+    .chat-scroll::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 6px; }
+
+    /* Improved light mode text visibility */
+    body.light { 
+      color: #1a202c; /* Darker text for better contrast */
+    }
+    
+    body.light .text-gray-300 { 
+      color: #4a5568; /* Darker gray for better contrast */
+      font-size: 1.1rem; /* Slightly larger text */
+    }
+    
+    body.light .text-gray-400 { 
+      color: #718096; 
+    }
+    
+    body.light .bg-gray-800 { 
+      background-color: #f1f5f9; 
+      color: #2d3748; 
+    }
+    
+    body.light .bg-gray-700 { 
+      background-color: #e2e8f0; 
+      color: #2d3748; 
+    }
+    
+    body.light .border-gray-700 { 
+      border-color: #cbd5e1; 
+    }
+    
+    body.light .text-gray-100 { 
+      color: #2d3748; 
+    }
+    
+    body.light .bg-indigo-600 { 
+      background-color: #4f46e5; 
+    }
+    
+    body.light .hover\:bg-indigo-700:hover { 
+      background-color: #4338ca; 
+    }
+    
+    body.light .bg-indigo-500 { 
+      background-color: #6366f1; 
+    }
+    
+    body.light .bg-gray-900 { 
+      background-color: #f8fafc; 
+    }
+    
+    body.light .modal-backdrop { 
+      background: rgba(255,255,255,0.8); 
+    }
+    
+    /* Improved modal styling */
+    #modal {
+      max-width: 700px;
+      width: 90%;
+      margin: 0 auto;
+      transform-origin: center;
+    }
+    
+    .modal-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .modal-role {
+      background: rgba(255,255,255,0.05);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--accent-from);
+    }
+    
+    body.light .modal-role {
+      background: rgba(0,0,0,0.03);
+      border-left-color: var(--accent-to);
+    }
+    
+    .modal-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    
+    .modal-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .feature-icon {
+      color: var(--accent-from);
+    }
+    
+    body.light .feature-icon {
+      color: var(--accent-to);
+    }
+
+    /* Yellow highlight for specific text */
+    .highlight-yellow {
+      color: #FFD700;
+      font-weight: 600;
+    }
+    
+    body.light .highlight-yellow {
+      color: #B8860B;
+    }
+
+    /* Enhanced Hero Section */
+    .hero-subtitle {
+      font-size: 1.5rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, #FFD700, #FFA500);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+      margin-bottom: 1rem;
+    }
+    
+    .hero-description {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Premium Chatbot UI */
+    .chat-container {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 1000;
+    }
+    
+    .chat-window {
+      width: 420px;
+      height: 580px;
+      background: var(--card-dark);
+      border-radius: 22px;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.45);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform-origin: bottom right;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(15px);
+    }
+    
+    body.light .chat-window {
+      background: var(--card-light);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+    }
+    
+    .chat-header {
+      padding: 20px 24px;
+      background: linear-gradient(135deg, var(--accent-from), var(--accent-to));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .chat-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.15), transparent);
+      transform: translateX(-100%);
+      animation: shimmer 3s infinite;
+    }
+    
+    @keyframes shimmer {
+      100% { transform: translateX(100%); }
+    }
+    
+    .chat-header-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      z-index: 1;
+    }
+    
+    .chat-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .chat-avatar::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: translateX(-100%);
+      animation: avatarShine 4s infinite;
+    }
+    
+    @keyframes avatarShine {
+      0%, 100% { transform: translateX(-100%); }
+      50% { transform: translateX(100%); }
+    }
+    
+    .chat-title {
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+    }
+    
+    .chat-subtitle {
+      font-size: 13px;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .status-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10B981;
+      animation: pulseStatus 2s infinite;
+      box-shadow: 0 0 10px #10B981;
+    }
+    
+    @keyframes pulseStatus {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.8; }
+    }
+    
+    .chat-close {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 1;
+      backdrop-filter: blur(5px);
+    }
+    
+    .chat-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg) scale(1.1);
+    }
+    
+    .chat-messages {
+      flex: 1;
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.05) 0%, transparent 50%);
+    }
+    
+    .message {
+      max-width: 85%;
+      padding: 16px 20px;
+      border-radius: 22px;
+      position: relative;
+      animation: messageAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      line-height: 1.5;
+      backdrop-filter: blur(5px);
+    }
+    
+    @keyframes messageAppear {
+      from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    .bot-message {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(139, 92, 246, 0.12));
+      border-bottom-left-radius: 8px;
+      align-self: flex-start;
+      border: 1px solid rgba(99, 102, 241, 0.15);
+    }
+    
+    .user-message {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(99, 102, 241, 0.18));
+      border-bottom-right-radius: 8px;
+      align-self: flex-end;
+      border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    
+    body.light .bot-message {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.08));
+      border: 1px solid rgba(99, 102, 241, 0.1);
+    }
+    
+    body.light .user-message {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(99, 102, 241, 0.12));
+      border: 1px solid rgba(139, 92, 246, 0.15);
+    }
+    
+    .message-text {
+      margin: 0;
+      line-height: 1.5;
+      font-size: 15px;
+    }
+    
+    .message-time {
+      font-size: 11px;
+      opacity: 0.6;
+      margin-top: 8px;
+      text-align: right;
+    }
+    
+    .message-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    
+    .message-action {
+      background: rgba(255, 255, 255, 0.18);
+      border: none;
+      border-radius: 16px;
+      padding: 8px 14px;
+      font-size: 12px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      backdrop-filter: blur(5px);
+    }
+    
+    .message-action:hover {
+      background: rgba(255, 255, 255, 0.28);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    body.light .message-action {
+      color: var(--text-light);
+      background: rgba(0, 0, 0, 0.1);
+    }
+    
+    body.light .message-action:hover {
+      background: rgba(0, 0, 0, 0.15);
+    }
+    
+    .chat-input-area {
+      padding: 20px 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.03);
+    }
+    
+    .chat-input-field {
+      flex: 1;
+      padding: 16px 20px;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      outline: none;
+      font-size: 15px;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(5px);
+    }
+    
+    .chat-input-field:focus {
+      border-color: var(--accent-to);
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.25);
+      transform: translateY(-2px);
+    }
+    
+    .chat-input-field::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    body.light .chat-input-field {
+      color: var(--text-light);
+      background: rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    body.light .chat-input-field:focus {
+      background: rgba(0, 0, 0, 0.08);
+      border-color: var(--accent-to);
+    }
+    
+    body.light .chat-input-field::placeholder {
+      color: rgba(0, 0, 0, 0.5);
+    }
+    
+    .chat-send-button {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-from), var(--accent-to));
+      border: none;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .chat-send-button::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+    
+    .chat-send-button:hover {
+      transform: scale(1.08) rotate(5deg);
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+    }
+    
+    .chat-send-button:hover::before {
+      transform: translateX(100%);
+    }
+    
+    .chat-send-button:active {
+      transform: scale(0.96);
+    }
+    
+    .chat-send-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .typing-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(139, 92, 246, 0.12));
+      border-radius: 22px;
+      border-bottom-left-radius: 8px;
+      align-self: flex-start;
+      border: 1px solid rgba(99, 102, 241, 0.15);
+    }
+    
+    .typing-text {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-right: 10px;
+    }
+    
+    .typing-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #6366f1;
+      animation: typing 1.4s infinite ease-in-out;
+      box-shadow: 0 0 5px rgba(99, 102, 241, 0.5);
+    }
+    
+    .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+    .typing-dot:nth-child(3) { animation-delay: -0.32s; }
+    
+    @keyframes typing {
+      0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+      40% { transform: scale(1.1); opacity: 1; }
+    }
+    
+    .chat-welcome {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--muted-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .welcome-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-from), var(--accent-to));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .welcome-icon::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: translateX(-100%);
+      animation: iconShine 4s infinite;
+    }
+    
+    @keyframes iconShine {
+      0%, 100% { transform: translateX(-100%); }
+      50% { transform: translateX(100%); }
+    }
+    
+    .welcome-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text-dark);
+      background: linear-gradient(90deg, var(--accent-from), var(--accent-to));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .welcome-subtitle {
+      font-size: 15px;
+      opacity: 0.8;
+      max-width: 320px;
+      line-height: 1.6;
+    }
+    
+    body.light .chat-welcome {
+      color: var(--muted-light);
+    }
+    
+    body.light .welcome-title {
+      color: var(--text-light);
+    }
+    
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+      justify-content: center;
+      max-width: 340px;
+    }
+    
+    .quick-action {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.08));
+      border: 1px solid rgba(99, 102, 241, 0.15);
+      border-radius: 18px;
+      padding: 12px 18px;
+      font-size: 13px;
+      color: var(--text-dark);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-weight: 500;
+      flex: 1;
+      min-width: 150px;
+      text-align: center;
+      backdrop-filter: blur(5px);
+    }
+    
+    .quick-action:hover {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.22), rgba(139, 92, 246, 0.15));
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.25);
+    }
+    
+    body.light .quick-action {
+      color: var(--text-light);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.05));
+      border: 1px solid rgba(99, 102, 241, 0.1);
+    }
+    
+    body.light .quick-action:hover {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(139, 92, 246, 0.1));
+    }
+
+    /* Premium Chatbot Icon */
+    .chatbot-icon {
+      position: relative;
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--accent-from), var(--accent-to));
+      box-shadow: 0 10px 40px rgba(99, 102, 241, 0.6);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      border: 3px solid rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+      z-index: 10;
+    }
+    
+    .chatbot-icon:hover {
+      transform: scale(1.12) rotate(8deg);
+      box-shadow: 0 15px 50px rgba(99, 102, 241, 0.8);
+    }
+    
+    .chatbot-icon::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-2-from), var(--accent-2-to));
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .chatbot-icon:hover::before {
+      opacity: 0.4;
+    }
+    
+    .chatbot-icon svg {
+      width: 34px;
+      height: 34px;
+      z-index: 1;
+      position: relative;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+    }
+    
+    .chatbot-pulse {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-from), var(--accent-to));
+      animation: pulse 2s infinite;
+      z-index: -1;
+    }
+    
+    .notification-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #EF4444, #DC2626);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 3px 10px rgba(239, 68, 68, 0.6);
+      animation: bounce 2s infinite;
+      z-index: 11;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-6px); }
+      60% { transform: translateY(-4px); }
+    }
+
+    /* responsive */
+    @media (max-width:640px){ 
+      .project-thumb { height:100px; } 
+      .skill-icon{ min-width:24px; min-height:24px; }
+      #modal {
+        width: 95%;
+        margin: 1rem auto;
+      }
+      .modal-features {
+        grid-template-columns: 1fr;
+      }
+      body, body.light {
+        font-size: 16px; /* Slightly smaller on mobile but still readable */
+      }
+      .chatbot-icon {
+        width: 65px;
+        height: 65px;
+      }
+      .chatbot-icon svg {
+        width: 30px;
+        height: 30px;
+      }
+      .chat-window {
+        width: calc(100vw - 40px);
+        height: 75vh;
+        bottom: 15px;
+        right: 15px;
+      }
+      .hero-subtitle {
+        font-size: 1.3rem;
+      }
+      .hero-description {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 p-4">
+    <div class="container mx-auto flex items-center justify-between">
+      <a class="text-2xl font-extrabold tracking-tight">PRIYASHA SHARMA</a>
+
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" title="Toggle theme" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-800/20 hover:bg-gray-800 transition">
+          <!-- icon will be toggled by JS -->
+          <svg id="theme-svg" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <!-- default: moon -->
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+          </svg>
+        </button>
+
+        <!-- Big colored icons -->
+        <a class="w-10 h-10 rounded-full flex items-center justify-center" href="https://github.com/priyasha1212/" target="_blank" style="background:linear-gradient(90deg,var(--accent-from),var(--accent-to));">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.13c0 4.5 2.87 8.32 6.84 9.67.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.61-3.37-1.37-3.37-1.37-.45-1.16-1.11-1.47-1.11-1.47-.91-.64.07-.63.07-.63 1.01.07 1.54 1.06 1.54 1.06.9 1.55 2.36 1.1 2.94.84.09-.66.35-1.1.63-1.35-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.38 9.38 0 0112 6.8c.85.004 1.71.11 2.51.32 1.9-1.32 2.74-1.05 2.74-1.05.56 1.41.21 2.45.11 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.59 5.05.36.32.67.95.67 1.92 0 1.38-.01 2.5-.01 2.84 0 .26.18.58.69.48A10.14 10.14 0 0022 12.13C22 6.58 17.52 2 12 2z" clip-rule="evenodd"/></svg>
+        </a>
+
+        <a class="w-10 h-10 rounded-full flex items-center justify-center" href="https://www.linkedin.com/in/priyashasharmaa2003" target="_blank" style="background:linear-gradient(90deg,#06b6d4,#3b82f6);">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3A2 2 0 0121 5v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zm-9.75 7.75H7.5V18h1.75V10.75zM9.37 9a1 1 0 110-2 1 1 0 010 2zM17.5 12.5c0-2.5-1.33-3.5-3.1-3.5-1.43 0-2.08.78-2.45 1.33V10.75H9.75V18h1.75v-3.7c0-.98.18-1.96 1.34-1.96 1.15 0 1.15 1.05 1.15 2.05V18H17.5v-5.5z"/></svg>
+        </a>
+
+        <!-- Fixed Gmail link -->
+        <a class="w-10 h-10 rounded-full flex items-center justify-center" href="mailto:priyashasharmaa2003@gmail.com" style="background:linear-gradient(90deg,var(--accent-from),var(--accent-2-to));">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.25 6.75A2.25 2.25 0 014.5 4.5h15a2.25 2.25 0 012.25 2.25v10.5A2.25 2.25 0 0119.5 19.5h-15A2.25 2.25 0 012.25 17.25V6.75zM4.5 6.75v.638l7.5 4.5 7.5-4.5V6.75L12 11.25 4.5 6.75z"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center text-center px-6 py-20">
+    <div class="absolute inset-0 opacity-10 blur-sm" style="background-image:url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2670&auto=format&fit=crop'); background-size:cover;"></div>
+    <div class="relative z-10 max-w-3xl">
+      <div class="mx-auto w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-indigo-400 shadow-2xl animate-fade-in card">
+        <!-- Profile Picture - Replace the src with your image URL -->
+        <img src="images/priya.jpeg" alt="Priyasha Sharma" class="w-full h-full object-cover" />
+      </div>
+
+      <h1 class="mt-6 text-4xl md:text-6xl font-extrabold hero-title animate-fade-in">Aspiring AWS Cloud & DevOps Enthusiast</h1>
+      <p class="mt-4 text-gray-300 max-w-2xl mx-auto animate-fade-in-delay hero-description">A results-oriented <span class="highlight-yellow">Computer Science Engineer</span> with expertise in AWS Cloud Infrastructure, DevOps, and scalable solution development.</p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-16 px-6 max-w-4xl mx-auto">
+    <h2 class="text-4xl font-bold text-center mb-8 hero-title">About Me</h2>
+    <div class="card p-8 rounded-xl shadow">
+      <p class="text-gray-300 mb-4">I am a passionate <span class="highlight-yellow">Computer Science Engineer</span> with a strong foundation in AWS Cloud Infrastructure and DevOps. Currently pursuing my Bachelor's degree from Dronacharya College of Engineering with a CGPA of 8.14/10.</p>
+      
+      <p class="text-gray-300 mb-4">During my internship at <span class="highlight-yellow">F13 Technologies</span>, I gained hands-on experience in developing enterprise-level cloud solutions using AWS services with a focus on scalability and security. I built a tech stack recommendation system using Lambda, S3, and SageMaker for ML deployment, and created an HRMS from scratch with EC2, API Gateway, and Cognito for authentication.</p>
+      
+      <p class="text-gray-300">My project <span class="highlight-yellow">ParseWithMe</span> was selected among 600+ proposals in the FAER Student Innovation Program 2025, where I developed a social media forensic tool with automated data capture and reporting capabilities. I'm proficient in Python, Java, JavaScript, and have extensive experience with Docker, CI/CD pipelines, and cloud security best practices.</p>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="py-16 px-6 max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold text-center mb-10 hero-title">My Projects</h2>
+
+    <div id="projects-grid" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Project 1 -->
+      <div class="project-card card p-4 cursor-pointer" data-id="p1" role="button" tabindex="0">
+        <img class="project-thumb rounded-md mb-4" src="https://placehold.co/800x400/0f172a/8b5cf6?text=Parse+With+Me" alt="Parse With Me thumbnail">
+        <h3 class="text-xl font-semibold mb-1">Parse With Me</h3>
+        <p class="text-gray-300 text-sm">Social media forensic tool focused on automated data capture and reports.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="badge">React.js</span>
+          <span class="badge">Tailwind</span>
+          <span class="badge-2">Kotlin</span>
+          <span class="badge">Python</span>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card card p-4 cursor-pointer" data-id="p2" role="button" tabindex="0">
+        <img class="project-thumb rounded-md mb-4" src="https://placehold.co/800x400/0f172a/6366f1?text=Docker+Env" alt="Dockerized Dev thumbnail">
+        <h3 class="text-xl font-semibold mb-1">Dockerized Dev Environment</h3>
+        <p class="text-gray-300 text-sm">Automated Docker setups for MySQL, Java and Python with scripts and docs.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="badge-2">Docker</span>
+          <span class="badge">Shell</span>
+          <span class="badge">MySQL</span>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card card p-4 cursor-pointer" data-id="p3" role="button" tabindex="0">
+        <img class="project-thumb rounded-md mb-4" src="https://placehold.co/800x400/0f172a/ec4899?text=Cloud+Infra" alt="Cloud Infra thumbnail">
+        <h3 class="text-xl font-semibold mb-1">Cloud Infrastructure Management</h3>
+        <p class="text-gray-300 text-sm">Managed and automated AWS resources with monitoring and security focus.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="badge">AWS CLI</span>
+          <span class="badge-2">IAM</span>
+          <span class="badge">CloudWatch</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="py-16 px-6 max-w-4xl mx-auto">
+    <h2 class="text-4xl font-bold text-center mb-8 hero-title">Skills</h2>
+    <div class="grid gap-6 md:grid-cols-3">
+      <!-- Languages -->
+      <div class="skill card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background:linear-gradient(90deg,var(--accent-from),var(--accent-to));">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7l-8 10M8 7h8v10" /></svg>
+          </div>
+          <h4 class="text-xl font-semibold">Languages</h4>
+        </div>
+
+        <ul class="text-gray-300 list-inside space-y-2">
+          <li class="skill-li">
+            <span class="skill-icon" aria-hidden>
+              <!-- Python icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9.585 11.692h4.328s2.432.039 2.432-2.35V5.391S16.714 3 11.936 3C7.362 3 7.647 4.983 7.647 4.983l.006 2.055h4.363v.617H5.752S3 7.391 3 11.693c0 4.393 2.295 4.393 2.295 4.393h1.947v-2.141s-.083-2.254 2.393-2.254zm-.056-5.74a.784.784 0 0 1-.785-.784.784.784 0 0 1 .785-.785.784.784 0 0 1 .785.785.784.784 0 0 1-.785.784z"/>
+                <path d="M14.412 12.308H10.08s-2.432-.04-2.432 2.35v3.951s-.369 2.391 4.409 2.391c4.573 0 4.288-1.983 4.288-1.983l-.006-2.054h-4.363v-.617h6.264S21 16.609 21 12.307c0-4.393-2.295-4.393-2.295-4.393h-1.947v2.141s.083 2.254-2.393 2.254zm.056 5.74a.784.784 0 0 1 .785.784.784.784 0 0 1-.785.785.784.784 0 0 1-.785-.785.784.784 0 0 1 .785-.784z"/>
+              </svg>
+            </span>
+            <div class="font-medium">Python</div>
+          </li>
+
+          <li class="skill-li">
+            <span class="skill-icon">
+              <!-- Java icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.91 10.316c-.36.105-.664.15-1.488.15-1.56 0-2.52-.6-2.52-2.04 0-.54.24-.9.72-1.14.54-.3 1.32-.42 2.34-.42.84 0 1.44.06 1.92.18v3.27zm-1.92-5.76c-1.32 0-2.28.36-2.88 1.08-.6.72-.9 1.68-.9 2.88 0 1.32.36 2.28 1.08 2.88.72.6 1.68.9 2.88.9 1.32 0 2.28-.36 2.88-1.08.6-.72.9-1.68.9-2.88 0-1.32-.36-2.28-1.08-2.88-.72-.6-1.68-.9-2.88-.9zM7.5 16.5c-1.32 0-2.28.36-2.88 1.08-.6.72-.9 1.68-.9 2.88 0 1.32.36 2.28 1.08 2.88.72.6 1.68.9 2.88.9 1.32 0 2.28-.36 2.88-1.08.6-.72.9-1.68.9-2.88 0-1.32-.36-2.28-1.08-2.88-.72-.6-1.68-.9-2.88-.9zm9 0c-1.32 0-2.28.36-2.88 1.08-.6.72-.9 1.68-.9 2.88 0 1.32.36 2.28 1.08 2.88.72.6 1.68.9 2.88.9 1.32 0 2.28-.36 2.88-1.08.6-.72.9-1.68.9-2.88 0-1.32-.36-2.28-1.08-2.88-.72-.6-1.68-.9-2.88-.9z"/>
+              </svg>
+            </span>
+            <div class="font-medium">Java</div>
+          </li>
+
+          <li class="skill-li">
+            <span class="skill-icon">
+              <!-- JavaScript icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 3h18v18H3V3zm9 12.93c.61 0 1.14.2 1.5.6.36.4.54.93.54 1.6 0 .67-.18 1.2-.54 1.6-.36.4-.89.6-1.5.6-.61 0-1.14-.2-1.5-.6-.36-.4-.54-.93-.54-1.6 0-.67.18-1.2.54-1.6.36-.4.89-.6 1.5-.6zm-3.75-6.93h7.5v2.25h-4.5v1.5h4.5v2.25h-4.5v1.5h4.5v2.25h-7.5v-9z"/>
+              </svg>
+            </span>
+            <div class="font-medium">JavaScript</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Cloud & DevOps -->
+      <div class="skill card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background:linear-gradient(90deg,var(--accent-2-from),var(--accent-2-to));">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15a4 4 0 014-4h1.26A6 6 0 1117 15H7a4 4 0 01-4-4z"/></svg>
+          </div>
+          <h4 class="text-xl font-semibold">Cloud & DevOps</h4>
+        </div>
+
+        <ul class="text-gray-300 list-inside space-y-2">
+          <li class="skill-li">
+            <span class="skill-icon" style="background:linear-gradient(90deg,#06b6d4,#3b82f6);">
+              <!-- AWS icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M5.8 16.2l-1.4-1.4L12 6l7.6 8.8-1.4 1.4L12 9l-6.2 7.2z"/>
+              </svg>
+            </span>
+            <div class="font-medium">AWS</div>
+          </li>
+
+          <li class="skill-li">
+            <span class="skill-icon" style="background:linear-gradient(90deg,#0ea5a4,#06b6d4);">
+              <!-- Docker icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4.5 9.75h3v1.5h-3v-1.5zm3.75 0h3v1.5h-3v-1.5zm3.75 0h3v1.5h-3v-1.5zm-7.5 3h3v1.5h-3v-1.5zm3.75 0h3v1.5h-3v-1.5zm3.75 0h3v1.5h-3v-1.5zm-7.5 3h3v1.5h-3v-1.5zm3.75 0h3v1.5h-3v-1.5zm3.75 0h3v1.5h-3v-1.5z"/>
+              </svg>
+            </span>
+            <div class="font-medium">Docker & CI/CD</div>
+          </li>
+
+          <li class="skill-li">
+            <span class="skill-icon" style="background:linear-gradient(90deg,#7c3aed,#ef4444);">
+              <!-- Monitoring icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M21 8V6h-2V4h-2v2h-2V4h-2v2h-2V4H9v2H7V4H5v2H3v2h2v2H3v2h2v2H3v2h2v2H3v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h-2v-2h2v-2h-2v-2h2v-2h-2V8h2zm-4 10h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V8h2v2z"/>
+              </svg>
+            </span>
+            <div class="font-medium">Monitoring</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Tools -->
+      <div class="skill card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background:linear-gradient(90deg,var(--accent-from),var(--accent-2-to));">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3M20.59 13.41A8 8 0 1112 4v1"/></svg>
+          </div>
+          <h4 class="text-xl font-semibold">Tools</h4>
+        </div>
+
+        <ul class="text-gray-300 list-inside space-y-2">
+          <li class="skill-li">
+            <span class="skill-icon" style="background:linear-gradient(90deg,#f97316,#f59e0b);">
+              <!-- MySQL icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16.5 12.5c0 1.93-1.57 3.5-3.5 3.5s-3.5-1.57-3.5-3.5 1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5z"/>
+                <path d="M20 6H4c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 9c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+              </svg>
+            </span>
+            <div class="font-medium">MySQL</div>
+          </li>
+
+          <li class="skill-li">
+            <span class="skill-icon" style="background:linear-gradient(90deg,#06b6d4,#3b82f6);">
+              <!-- Tailwind icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 6c-2.67 0-4.33 1.33-5 4 1-1.33 2.17-1.83 3.5-1.5 1.53.47 2.05 1.8 3.13 1.8 1.13 0 1.87-.87 3.37-1.8 1.33-.6 2.5-.17 3.5 1.5-.67-2.67-2.33-4-5-4zm-5 8c-2.67 0-4.33 1.33-5 4 1-1.33 2.17-1.83 3.5-1.5 1.53.47 2.05 1.8 3.13 1.8 1.13 0 1.87-.87 3.37-1.8 1.33-.6 2.5-.17 3.5 1.5-.67-2.67-2.33-4-5-4z"/>
+              </svg>
+            </span>
+            <div class="font-medium">Tailwind CSS</div>
+          </li>
+
+          <li class="skill-li">
+            <span class="skill-icon" style="background:linear-gradient(90deg,#111827,#374151);">
+              <!-- Linux/Git icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm4 0h-2V9h2v8z"/>
+              </svg>
+            </span>
+            <div class="font-medium">Linux & Git</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHATBOT -->
+  <div class="chat-container">
+    <div class="chatbot-icon" id="chat-toggle">
+      <div class="chatbot-pulse"></div>
+      <div class="notification-badge">1</div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 12H7c-.55 0-1-.45-1-1s.45-1 1-1h10c.55 0 1 .45 1 1s-.45 1-1 1zm0-4H7c-.55 0-1-.45-1-1s.45-1 1-1h10c.55 0 1 .45 1 1s-.45 1-1 1z"/>
+      </svg>
+    </div>
+
+    <div id="chat-window" class="chat-window hidden">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-avatar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 12H7c-.55 0-1-.45-1-1s.45-1 1-1h10c.55 0 1 .45 1 1s-.45 1-1 1zm0-4H7c-.55 0-1-.45-1-1s.45-1 1-1h10c.55 0 1 .45 1 1s-.45 1-1 1z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="chat-title">Priyasha's AI Assistant</div>
+            <div class="chat-subtitle">
+              <span class="status-indicator"></span>
+              Online • Ready to help
+            </div>
+          </div>
+        </div>
+        <button class="chat-close" id="chat-close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        </button>
+      </div>
+
+      <div id="chat-messages" class="chat-messages">
+        <!-- Messages will be added here dynamically -->
+      </div>
+
+      <div class="chat-input-area">
+        <input id="chat-input" type="text" placeholder="Ask about Priyasha's skills, projects, or experience..." class="chat-input-field">
+        <button id="chat-send" class="chat-send-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL (centered) -->
+  <div id="modal-root" class="fixed inset-0 hidden items-center justify-center z-60 modal-backdrop">
+    <div id="modal" class="max-w-xl w-full bg-gray-900 card rounded-xl p-6 transform scale-90 opacity-0">
+      <div class="flex justify-between items-start">
+        <h3 id="modal-title" class="text-2xl font-bold"></h3>
+        <button id="modal-close" class="text-gray-400 hover:text-white">✖</button>
+      </div>
+
+      <div class="modal-content">
+        <p id="modal-desc" class="text-gray-300"></p>
+
+        <div class="modal-role">
+          <h4 class="font-semibold text-white mb-2">My Role & Responsibilities</h4>
+          <p id="modal-role-text" class="text-gray-300"></p>
+          
+          <div class="modal-features">
+            <div class="feature-item">
+              <svg class="w-5 h-5 feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span id="modal-feature-1"></span>
+            </div>
+            <div class="feature-item">
+              <svg class="w-5 h-5 feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span id="modal-feature-2"></span>
+            </div>
+            <div class="feature-item">
+              <svg class="w-5 h-5 feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span id="modal-feature-3"></span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-semibold text-white mb-2">Technologies Used</h4>
+          <div id="modal-tech" class="modal-tech"></div>
+        </div>
+      </div>
+
+      <div class="mt-4 flex justify-end gap-2">
+        <a id="modal-link" href="#" target="_blank" class="px-4 py-2 bg-indigo-600 rounded hover:bg-indigo-700 text-white">View Repo</a>
+        <button id="modal-close-2" class="px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">Close</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  /* ---------- Theme toggle ---------- */
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeSvg = document.getElementById('theme-svg');
+  let isLight = localStorage.getItem('theme') === 'light';
+  
+  function applyTheme(){
+    if(isLight){
+      document.body.classList.add('light');
+      // Sun icon for light mode
+      themeSvg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-9H21m-18 0H3m15.36-6.36l-.7.7M6.34 17.66l-.7.7"/>';
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.body.classList.remove('light');
+      // Moon icon for dark mode
+      themeSvg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>';
+      localStorage.setItem('theme', 'dark');
+    }
+  }
+  
+  // Apply saved theme on page load
+  applyTheme();
+  
+  themeToggle.addEventListener('click', ()=> { 
+    isLight = !isLight; 
+    applyTheme(); 
+  });
+
+  /* ---------- Premium Chatbot ---------- */
+  const chatToggle = document.getElementById('chat-toggle');
+  const chatWindow = document.getElementById('chat-window');
+  const chatClose = document.getElementById('chat-close');
+  const chatInput = document.getElementById('chat-input');
+  const chatSend = document.getElementById('chat-send');
+  const chatMessages = document.getElementById('chat-messages');
+  const notificationBadge = document.querySelector('.notification-badge');
+
+  // Enhanced knowledge base based on your resume
+  const KB = {
+    'experience': "Priyasha worked as an AWS Cloud Intern at F13 Technologies from February to June 2025. She developed enterprise-level cloud solutions using AWS services with a focus on scalability and security. She built a tech stack recommendation system using Lambda, S3, and SageMaker for ML deployment, and created an HRMS from scratch with EC2, API Gateway, and Cognito for authentication.",
+    'skills': "Priyasha is skilled in Python, Java, JavaScript, C++, HTML, CSS, and Shell Scripting. Her cloud expertise includes AWS services like EC2, S3, Lambda, RDS, VPC, CloudWatch, IAM, SNS, SageMaker, API Gateway, and Cognito. She's also proficient in DevOps tools like Docker, Docker Compose, CI/CD, Git, and GitHub.",
+    'projects': "She has worked on several projects including ParseWithMe (a social media forensic tool), Dockerized Development Environment for MySQL, Java, and Python, and Cloud Infrastructure Management. ParseWithMe was selected among 600+ proposals in the FAER Student Innovation Program 2025.",
+    'education': "Priyasha is pursuing a Bachelor of Engineering in Computer Science from Dronacharya College of Engineering (2022-2026) with a CGPA of 8.14/10.",
+    'achievements': "Her project ParseWithMe was selected in the FAER Student Innovation Program 2025 among 600+ proposals from across India. She developed the complete software and presented it to expert judges.",
+    'certifications': "She holds certifications in Python Programming Masterclass from Udemy, AWS Partner Accreditation (Technical), AWS Technical Essentials, Introduction to AWS DevOps Navigate, and completed a Summer Internship in AWS DevOps.",
+    'contact': "You can reach Priyasha via email at priyashasharmaa2003@gmail.com, on LinkedIn at linkedin.com/in/priyashasharmaa2003, or view her projects on GitHub at github.com/priyasha1212.",
+    'hello': "Hello! I'm Priyasha's AI assistant. I can tell you about her skills, projects, experience, education, and more. What would you like to know?",
+    'hi': "Hi there! I'm here to help you learn about Priyasha's qualifications and experience. Feel free to ask me anything about her background, skills, or projects."
+  };
+
+  // Function to add a message to the chat
+  function addMessage(text, sender) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${sender}-message`;
+    
+    const messageContent = document.createElement('p');
+    messageContent.className = 'message-text';
+    messageContent.textContent = text;
+    messageDiv.appendChild(messageContent);
+    
+    // Add timestamp
+    const timeDiv = document.createElement('div');
+    timeDiv.className = 'message-time';
+    const now = new Date();
+    timeDiv.textContent = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    messageDiv.appendChild(timeDiv);
+    
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  // Function to show typing indicator
+  function showTypingIndicator() {
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'typing-indicator';
+    typingDiv.id = 'typing-indicator';
+    
+    typingDiv.innerHTML = `
+      <span class="typing-text">Priyasha's AI is typing</span>
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+    `;
+    
+    chatMessages.appendChild(typingDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    
+    return typingDiv;
+  }
+
+  // Function to remove typing indicator
+  function removeTypingIndicator() {
+    const typingIndicator = document.getElementById('typing-indicator');
+    if (typingIndicator) {
+      typingIndicator.remove();
+    }
+  }
+
+  // Function to handle user message
+  function handleUserMessage(text) {
+    addMessage(text, 'user');
+    
+    // Remove notification badge after first interaction
+    if (notificationBadge) {
+      notificationBadge.style.display = 'none';
+    }
+    
+    // Show typing indicator
+    const typingIndicator = showTypingIndicator();
+    
+    // Simulate thinking time
+    setTimeout(() => {
+      removeTypingIndicator();
+      
+      let reply = "I'm not sure about that. You can ask me about Priyasha's experience, skills, projects, education, achievements, certifications, or contact information.";
+      
+      // Find the best matching topic
+      const lowerText = text.toLowerCase();
+      for (let topic in KB) {
+        if (lowerText.includes(topic)) {
+          reply = KB[topic];
+          break;
+        }
+      }
+      
+      // If no specific topic matched, try to find related keywords
+      if (reply === "I'm not sure about that. You can ask me about Priyasha's experience, skills, projects, education, achievements, certifications, or contact information.") {
+        if (lowerText.includes('aws') || lowerText.includes('cloud')) {
+          reply = KB['experience'] + " " + KB['skills'];
+        } else if (lowerText.includes('python') || lowerText.includes('java')) {
+          reply = KB['skills'];
+        } else if (lowerText.includes('parse') || lowerText.includes('docker')) {
+          reply = KB['projects'];
+        }
+      }
+      
+      addMessage(reply, 'bot');
+      
+      // Add suggestion chips for follow-up questions
+      if (!lowerText.includes('contact') && !lowerText.includes('email') && !lowerText.includes('linkedin')) {
+        const suggestionDiv = document.createElement('div');
+        suggestionDiv.className = 'message-actions';
+        
+        const suggestions = ['experience', 'skills', 'projects', 'education'];
+        suggestions.forEach(suggestion => {
+          if (!lowerText.includes(suggestion)) {
+            const chip = document.createElement('button');
+            chip.className = 'message-action';
+            chip.textContent = suggestion.charAt(0).toUpperCase() + suggestion.slice(1);
+            chip.setAttribute('data-question', suggestion);
+            chip.addEventListener('click', () => {
+              chatInput.value = `Tell me about ${suggestion}`;
+              handleUserMessage(`Tell me about ${suggestion}`);
+            });
+            suggestionDiv.appendChild(chip);
+          }
+        });
+        
+        if (suggestionDiv.children.length > 0) {
+          const lastMessage = chatMessages.lastChild;
+          lastMessage.appendChild(suggestionDiv);
+        }
+      }
+    }, 1000 + Math.random() * 1000); // Random delay between 1-2 seconds
+  }
+
+  // Initialize chat with welcome message
+  function initializeChat() {
+    chatMessages.innerHTML = '';
+    
+    const welcomeDiv = document.createElement('div');
+    welcomeDiv.className = 'chat-welcome';
+    welcomeDiv.innerHTML = `
+      <div class="welcome-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 12H7c-.55 0-1-.45-1-1s.45-1 1-1h10c.55 0 1 .45 1 1s-.45 1-1 1zm0-4H7c-.55 0-1-.45-1-1s.45-1 1-1h10c.55 0 1 .45 1 1s-.45 1-1 1z"/>
+        </svg>
+      </div>
+      <div class="welcome-title">Hi there! </div>
+      <div class="welcome-subtitle">I'm Priyasha's AI assistant 👩🏻. I can help you learn about her skills, projects, experience, and more.</div>
+      <div class="quick-actions">
+        <button class="quick-action" data-question="experience">💼 Experience</button>
+        <button class="quick-action" data-question="skills">🛠️ Skills</button>
+        <button class="quick-action" data-question="projects">🚀 Projects</button>
+        <button class="quick-action" data-question="education">🎓 Education</button>
+      </div>
+    `;
+    
+    chatMessages.appendChild(welcomeDiv);
+    
+    // Add event listeners to quick actions
+    document.querySelectorAll('.quick-action').forEach(button => {
+      button.addEventListener('click', () => {
+        const question = button.getAttribute('data-question');
+        chatInput.value = `Tell me about ${question}`;
+        handleUserMessage(`Tell me about ${question}`);
+      });
+    });
+  }
+
+  // Chat toggle functionality
+  chatToggle.addEventListener('click', () => {
+    chatWindow.classList.toggle('hidden');
+    if (!chatWindow.classList.contains('hidden')) {
+      gsap.from(chatWindow, { 
+        scale: 0.7, 
+        opacity: 0, 
+        duration: 0.5, 
+        ease: "back.out(1.4)" 
+      });
+      initializeChat();
+    }
+  });
+
+  // Chat close functionality
+  chatClose.addEventListener('click', () => {
+    gsap.to(chatWindow, { 
+      scale: 0.7, 
+      opacity: 0, 
+      duration: 0.3, 
+      onComplete: () => chatWindow.classList.add('hidden') 
+    });
+  });
+
+  // Chat form submission
+  chatSend.addEventListener('click', (e) => {
+    e.preventDefault();
+    const text = chatInput.value.trim();
+    if (!text) return;
+    
+    handleUserMessage(text);
+    chatInput.value = '';
+  });
+
+  chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const text = chatInput.value.trim();
+      if (!text) return;
+      
+      handleUserMessage(text);
+      chatInput.value = '';
+    }
+  });
+
+  /* ---------- Enhanced Projects Modal ---------- */
+  const projectsData = {
+    p1: {
+      title: 'Parse With Me',
+      desc: 'Parse With Me is a social media forensic tool that extracts posts, messages, connections and generates PDF reports. It focuses on UX and automated data capture.',
+      role: 'Designed UI/UX and developed website using React, Tailwind CSS, and JavaScript. Contributed to app development and version control using Git. Our project was selected among 600+ proposals in the FAER Student Innovation Program 2025.',
+      features: [
+        'Social media data extraction and analysis',
+        'Automated PDF report generation',
+        'User-friendly interface design'
+      ],
+      tech: ['React.js', 'Tailwind CSS', 'HTML', 'JavaScript', 'Kotlin', 'Python', 'Selenium', 'Git', 'GitHub', 'Render'],
+      link: 'https://github.com/priyasha1212/Parse-WithMe'
+    },
+    p2: {
+      title: 'Dockerized Dev Environment',
+      desc: 'Automated Docker environments to quickly spin up MySQL, Java and Python dev stacks and ensure consistent setups.',
+      role: 'Created and automated Docker environments for MySQL, Java, and Python using Dockerfiles and Docker Compose. Configured containers with custom scripts, ensuring secure communication and data persistence. Implemented best practices for container security and efficiency.',
+      features: [
+        'Multi-service containerization',
+        'Automated environment setup',
+        'Secure container communication'
+      ],
+      tech: ['Docker', 'Docker Compose', 'MySQL', 'Java', 'Python', 'Shell Scripting', 'Linux'],
+      link: '#'
+    },
+    p3: {
+      title: 'Cloud Infrastructure Management',
+      desc: 'Managed AWS resources and automated backups, with focus on security and monitoring for production services.',
+      role: 'Managed AWS resources with AWS CLI and Linux commands, including EC2, S3, RDS, and VPCs. Implemented monitoring, logging, and backup solutions with CloudWatch and Linux commands for performance. Ensured compliance and security best practices using IAM policies, data encryption, and disaster recovery plans.',
+      features: [
+        'AWS resource management and automation',
+        'Security and compliance implementation',
+        'Performance monitoring and optimization'
+      ],
+      tech: ['Linux', 'AWS CLI', 'EC2', 'S3', 'RDS', 'VPC', 'Git', 'CloudWatch', 'IAM', 'KMS'],
+      link: '#'
+    }
+  };
+
+  const modalRoot = document.getElementById('modal-root');
+  const modal = document.getElementById('modal');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDesc = document.getElementById('modal-desc');
+  const modalRoleText = document.getElementById('modal-role-text');
+  const modalTech = document.getElementById('modal-tech');
+  const modalLink = document.getElementById('modal-link');
+  const modalClose = document.getElementById('modal-close');
+  const modalClose2 = document.getElementById('modal-close-2');
+  const modalFeature1 = document.getElementById('modal-feature-1');
+  const modalFeature2 = document.getElementById('modal-feature-2');
+  const modalFeature3 = document.getElementById('modal-feature-3');
+
+  document.querySelectorAll('.project-card').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      const id = card.dataset.id;
+      const d = projectsData[id];
+      if(!d) return;
+      
+      modalTitle.textContent = d.title;
+      modalDesc.textContent = d.desc;
+      modalRoleText.textContent = d.role;
+      
+      // Add features
+      modalFeature1.textContent = d.features[0] || '';
+      modalFeature2.textContent = d.features[1] || '';
+      modalFeature3.textContent = d.features[2] || '';
+      
+      // Add technologies
+      modalTech.innerHTML = '';
+      d.tech.forEach(tech => {
+        const badge = document.createElement('span');
+        badge.className = 'badge';
+        badge.textContent = tech;
+        modalTech.appendChild(badge);
+      });
+      
+      modalLink.href = d.link;
+      modalRoot.classList.remove('hidden');
+      gsap.to(modal, { scale: 1, opacity: 1, duration: 0.32, ease: "back.out(1.4)" });
+      modal.focus();
+    });
+
+    card.addEventListener('keydown', (e)=> { if(e.key === 'Enter' || e.key === ' ') card.click(); });
+  });
+
+  function closeModal(){
+    gsap.to(modal, { scale: 0.9, opacity: 0, duration: 0.18, onComplete: ()=> modalRoot.classList.add('hidden') });
+  }
+  
+  modalClose.addEventListener('click', closeModal);
+  modalClose2.addEventListener('click', closeModal);
+  modalRoot.addEventListener('click', (e)=> { if(e.target === modalRoot) closeModal(); });
+  window.addEventListener('keydown', (e)=> { if(e.key === 'Escape' && !modalRoot.classList.contains('hidden')) closeModal(); });
+
+  /* ---------- GSAP entrances ---------- */
+  gsap.from("#hero img", { opacity: 0, y: 20, duration: 0.9 });
+  gsap.from("#hero h1", { opacity: 0, y: -40, duration: 1, delay: 0.12 });
+  gsap.from("#hero p", { opacity: 0, y: 10, duration: 1, delay: 0.36 });
+
+  gsap.utils.toArray('#projects-grid .project-card').forEach((el, i) => {
+    gsap.from(el, { opacity: 0, y: 30, duration: 0.7, delay: 0.6 + i*0.12, ease: "power2.out" });
+  });
+
+  gsap.utils.toArray('#skills .skill').forEach((el, i) => {
+    gsap.from(el, { opacity: 0, y: 20, duration: 0.7, delay: 1 + i*0.12, ease: "power2.out" });
+  });
+</script>
+</body>
+</html>
