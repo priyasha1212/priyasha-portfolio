@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Priyasha Sharma — Cloud & DevOps Portfolio</title>
 
-  <!-- Tailwind CDN -->
+  
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- GSAP -->
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
 
   <style>
@@ -29,22 +29,22 @@
       --card-light: rgba(255,255,255,0.95);
     }
 
-    /* Base theme uses CSS variables via body class */
+    
     body { 
       background: var(--bg-dark); 
       color: var(--text-dark); 
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; 
       -webkit-font-smoothing:antialiased; 
-      font-size: 18px; /* Increased base font size */
-      line-height: 1.7; /* Increased line height for better readability */
+      font-size: 18px; 
+      line-height: 1.7; 
       transition: background-color 0.3s, color 0.3s;
     }
     body.light { 
       background: var(--bg-light); 
-      color: #1a202c; /* Darker text for better contrast in light mode */
+      color: #1a202c; 
     }
 
-    /* Card */
+    
     .card {
       background: var(--card-dark);
       border: 1px solid rgba(255,255,255,0.04);
@@ -58,12 +58,12 @@
       box-shadow: 0 10px 30px rgba(2,6,23,0.06);
     }
 
-    /* Badge */
+    
     .badge {
       display:inline-block;
       font-weight:600;
-      font-size:.85rem; /* Increased badge font size */
-      padding:.35rem .75rem; /* Increased badge padding */
+      font-size:.85rem; 
+      padding:.35rem .75rem; 
       border-radius:999px;
       color:#fff;
       background-image:linear-gradient(90deg,var(--accent-from),var(--accent-to));
@@ -71,27 +71,27 @@
     }
     .badge-2 { background-image:linear-gradient(90deg,var(--accent-2-from),var(--accent-2-to)); box-shadow:0 8px 30px rgba(124,58,237,0.08); }
 
-    /* Project card */
+    
     .project-card { overflow:hidden; transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s, border-color .28s; border:1px solid transparent; border-radius:12px; }
     .project-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(2,6,23,0.55); border-color: rgba(124,58,237,0.12); }
     .project-thumb { height:140px; width:100%; object-fit:cover; display:block; border-radius:8px; }
 
-    /* Skills */
+    
     .skill { 
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); 
       border: 1px solid rgba(255,255,255,0.03); 
-      padding:1.5rem; /* Increased padding */
+      padding:1.5rem; 
       border-radius:10px; 
       transition: transform .22s, box-shadow .22s; 
     }
     .skill:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(2,6,23,0.38); }
     body.light .skill { background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01)); border-color: rgba(15,23,42,0.04); }
 
-    /* Icons in skill list */
+    
     .skill-li { display:flex; gap:0.75rem; align-items:center; }
     .skill-icon { min-width:32px; min-height:32px; display:inline-flex; align-items:center; justify-content:center; border-radius:6px; background:linear-gradient(90deg,var(--accent-from),var(--accent-to)); color:#fff; padding:6px; }
 
-    /* Modal backdrop */
+    
     .modal-backdrop { 
       background: rgba(2,6,23,0.6); 
       backdrop-filter: blur(6px); 
@@ -100,14 +100,14 @@
       justify-content: center;
     }
 
-    /* header solid black */
+    
     header { background: rgba(0,0,0,0.96); }
     body.light header { 
       background: rgba(255,255,255,0.96); 
       border-bottom: 1px solid rgba(0,0,0,0.1);
     }
 
-    /* hero title gradient */
+    
     .hero-title { 
       background-image: linear-gradient(90deg,var(--accent-from),var(--accent-to)); 
       -webkit-background-clip:text; 
@@ -117,23 +117,23 @@
       text-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
     }
 
-    /* small animations */
+    
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: translateY(0);} }
     .animate-fade-in { animation: fadeIn .9s ease forwards; }
     .animate-fade-in-delay { animation: fadeIn .9s ease .4s forwards; }
 
-    /* chat scrollbar */
+    
     .chat-scroll::-webkit-scrollbar { width:6px; }
     .chat-scroll::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 6px; }
 
-    /* Improved light mode text visibility */
+    
     body.light { 
-      color: #1a202c; /* Darker text for better contrast */
+      color: #1a202c; 
     }
     
     body.light .text-gray-300 { 
-      color: #4a5568; /* Darker gray for better contrast */
-      font-size: 1.1rem; /* Slightly larger text */
+      color: #4a5568; 
+      font-size: 1.1rem; 
     }
     
     body.light .text-gray-400 { 
@@ -178,7 +178,7 @@
       background: rgba(255,255,255,0.8); 
     }
     
-    /* Improved modal styling */
+    
     #modal {
       max-width: 700px;
       width: 90%;
@@ -232,7 +232,7 @@
       color: var(--accent-to);
     }
 
-    /* Yellow highlight for specific text */
+    
     .highlight-yellow {
       color: #FFD700;
       font-weight: 600;
@@ -242,7 +242,7 @@
       color: #B8860B;
     }
 
-    /* Enhanced Hero Section */
+    
     .hero-subtitle {
       font-size: 1.5rem;
       font-weight: 600;
@@ -261,7 +261,7 @@
       line-height: 1.6;
     }
 
-    /* Premium Chatbot UI */
+    
     .chat-container {
       position: fixed;
       bottom: 25px;
@@ -746,7 +746,7 @@
       background: linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(139, 92, 246, 0.1));
     }
 
-    /* Premium Chatbot Icon */
+    
     .chatbot-icon {
       position: relative;
       width: 75px;
@@ -827,7 +827,7 @@
       60% { transform: translateY(-4px); }
     }
 
-    /* responsive */
+    
     @media (max-width:640px){ 
       .project-thumb { height:100px; } 
       .skill-icon{ min-width:24px; min-height:24px; }
@@ -839,7 +839,7 @@
         grid-template-columns: 1fr;
       }
       body, body.light {
-        font-size: 16px; /* Slightly smaller on mobile but still readable */
+        font-size: 16px; 
       }
       .chatbot-icon {
         width: 65px;
@@ -865,21 +865,21 @@
   </style>
 </head>
 <body>
-  <!-- HEADER -->
+  
   <header class="sticky top-0 z-50 p-4">
     <div class="container mx-auto flex items-center justify-between">
       <a class="text-2xl font-extrabold tracking-tight">PRIYASHA SHARMA</a>
 
       <div class="flex items-center gap-3">
         <button id="theme-toggle" title="Toggle theme" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-800/20 hover:bg-gray-800 transition">
-          <!-- icon will be toggled by JS -->
+          
           <svg id="theme-svg" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <!-- default: moon -->
+            
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
           </svg>
         </button>
 
-        <!-- Big colored icons -->
+        
         <a class="w-10 h-10 rounded-full flex items-center justify-center" href="https://github.com/priyasha1212/" target="_blank" style="background:linear-gradient(90deg,var(--accent-from),var(--accent-to));">
           <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.13c0 4.5 2.87 8.32 6.84 9.67.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.61-3.37-1.37-3.37-1.37-.45-1.16-1.11-1.47-1.11-1.47-.91-.64.07-.63.07-.63 1.01.07 1.54 1.06 1.54 1.06.9 1.55 2.36 1.1 2.94.84.09-.66.35-1.1.63-1.35-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.38 9.38 0 0112 6.8c.85.004 1.71.11 2.51.32 1.9-1.32 2.74-1.05 2.74-1.05.56 1.41.21 2.45.11 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.59 5.05.36.32.67.95.67 1.92 0 1.38-.01 2.5-.01 2.84 0 .26.18.58.69.48A10.14 10.14 0 0022 12.13C22 6.58 17.52 2 12 2z" clip-rule="evenodd"/></svg>
         </a>
@@ -888,7 +888,7 @@
           <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3A2 2 0 0121 5v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zm-9.75 7.75H7.5V18h1.75V10.75zM9.37 9a1 1 0 110-2 1 1 0 010 2zM17.5 12.5c0-2.5-1.33-3.5-3.1-3.5-1.43 0-2.08.78-2.45 1.33V10.75H9.75V18h1.75v-3.7c0-.98.18-1.96 1.34-1.96 1.15 0 1.15 1.05 1.15 2.05V18H17.5v-5.5z"/></svg>
         </a>
 
-        <!-- Fixed Gmail link -->
+        
         <a class="w-10 h-10 rounded-full flex items-center justify-center" href="mailto:priyashasharmaa2003@gmail.com" style="background:linear-gradient(90deg,var(--accent-from),var(--accent-2-to));">
           <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.25 6.75A2.25 2.25 0 014.5 4.5h15a2.25 2.25 0 012.25 2.25v10.5A2.25 2.25 0 0119.5 19.5h-15A2.25 2.25 0 012.25 17.25V6.75zM4.5 6.75v.638l7.5 4.5 7.5-4.5V6.75L12 11.25 4.5 6.75z"/></svg>
         </a>
@@ -982,7 +982,7 @@
         <ul class="text-gray-300 list-inside space-y-2">
           <li class="skill-li">
             <span class="skill-icon" aria-hidden>
-              <!-- Python icon -->
+              
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M9.585 11.692h4.328s2.432.039 2.432-2.35V5.391S16.714 3 11.936 3C7.362 3 7.647 4.983 7.647 4.983l.006 2.055h4.363v.617H5.752S3 7.391 3 11.693c0 4.393 2.295 4.393 2.295 4.393h1.947v-2.141s-.083-2.254 2.393-2.254zm-.056-5.74a.784.784 0 0 1-.785-.784.784.784 0 0 1 .785-.785.784.784 0 0 1 .785.785.784.784 0 0 1-.785.784z"/>
                 <path d="M14.412 12.308H10.08s-2.432-.04-2.432 2.35v3.951s-.369 2.391 4.409 2.391c4.573 0 4.288-1.983 4.288-1.983l-.006-2.054h-4.363v-.617h6.264S21 16.609 21 12.307c0-4.393-2.295-4.393-2.295-4.393h-1.947v2.141s.083 2.254-2.393 2.254zm.056 5.74a.784.784 0 0 1 .785.784.784.784 0 0 1-.785.785.784.784 0 0 1-.785-.785.784.784 0 0 1 .785-.784z"/>
@@ -993,7 +993,7 @@
 
           <li class="skill-li">
             <span class="skill-icon">
-              <!-- Java icon -->
+              
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12.91 10.316c-.36.105-.664.15-1.488.15-1.56 0-2.52-.6-2.52-2.04 0-.54.24-.9.72-1.14.54-.3 1.32-.42 2.34-.42.84 0 1.44.06 1.92.18v3.27zm-1.92-5.76c-1.32 0-2.28.36-2.88 1.08-.6.72-.9 1.68-.9 2.88 0 1.32.36 2.28 1.08 2.88.72.6 1.68.9 2.88.9 1.32 0 2.28-.36 2.88-1.08.6-.72.9-1.68.9-2.88 0-1.32-.36-2.28-1.08-2.88-.72-.6-1.68-.9-2.88-.9zM7.5 16.5c-1.32 0-2.28.36-2.88 1.08-.6.72-.9 1.68-.9 2.88 0 1.32.36 2.28 1.08 2.88.72.6 1.68.9 2.88.9 1.32 0 2.28-.36 2.88-1.08.6-.72.9-1.68.9-2.88 0-1.32-.36-2.28-1.08-2.88-.72-.6-1.68-.9-2.88-.9zm9 0c-1.32 0-2.28.36-2.88 1.08-.6.72-.9 1.68-.9 2.88 0 1.32.36 2.28 1.08 2.88.72.6 1.68.9 2.88.9 1.32 0 2.28-.36 2.88-1.08.6-.72.9-1.68.9-2.88 0-1.32-.36-2.28-1.08-2.88-.72-.6-1.68-.9-2.88-.9z"/>
               </svg>
@@ -1003,7 +1003,7 @@
 
           <li class="skill-li">
             <span class="skill-icon">
-              <!-- JavaScript icon -->
+              
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M3 3h18v18H3V3zm9 12.93c.61 0 1.14.2 1.5.6.36.4.54.93.54 1.6 0 .67-.18 1.2-.54 1.6-.36.4-.89.6-1.5.6-.61 0-1.14-.2-1.5-.6-.36-.4-.54-.93-.54-1.6 0-.67.18-1.2.54-1.6.36-.4.89-.6 1.5-.6zm-3.75-6.93h7.5v2.25h-4.5v1.5h4.5v2.25h-4.5v1.5h4.5v2.25h-7.5v-9z"/>
               </svg>
@@ -1013,7 +1013,7 @@
         </ul>
       </div>
 
-      <!-- Cloud & DevOps -->
+      
       <div class="skill card">
         <div class="flex items-center gap-3 mb-3">
           <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background:linear-gradient(90deg,var(--accent-2-from),var(--accent-2-to));">
@@ -1025,7 +1025,7 @@
         <ul class="text-gray-300 list-inside space-y-2">
           <li class="skill-li">
             <span class="skill-icon" style="background:linear-gradient(90deg,#06b6d4,#3b82f6);">
-              <!-- AWS icon -->
+              
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M5.8 16.2l-1.4-1.4L12 6l7.6 8.8-1.4 1.4L12 9l-6.2 7.2z"/>
               </svg>
@@ -1035,7 +1035,7 @@
 
           <li class="skill-li">
             <span class="skill-icon" style="background:linear-gradient(90deg,#0ea5a4,#06b6d4);">
-              <!-- Docker icon -->
+              
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M4.5 9.75h3v1.5h-3v-1.5zm3.75 0h3v1.5h-3v-1.5zm3.75 0h3v1.5h-3v-1.5zm-7.5 3h3v1.5h-3v-1.5zm3.75 0h3v1.5h-3v-1.5zm3.75 0h3v1.5h-3v-1.5zm-7.5 3h3v1.5h-3v-1.5zm3.75 0h3v1.5h-3v-1.5zm3.75 0h3v1.5h-3v-1.5z"/>
               </svg>
@@ -1045,7 +1045,7 @@
 
           <li class="skill-li">
             <span class="skill-icon" style="background:linear-gradient(90deg,#7c3aed,#ef4444);">
-              <!-- Monitoring icon -->
+              
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M21 8V6h-2V4h-2v2h-2V4h-2v2h-2V4H9v2H7V4H5v2H3v2h2v2H3v2h2v2H3v2h2v2H3v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h-2v-2h2v-2h-2v-2h2v-2h-2V8h2zm-4 10h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V8h2v2z"/>
               </svg>
@@ -1055,7 +1055,7 @@
         </ul>
       </div>
 
-      <!-- Tools -->
+      
       <div class="skill card">
         <div class="flex items-center gap-3 mb-3">
           <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background:linear-gradient(90deg,var(--accent-from),var(--accent-2-to));">
@@ -1067,7 +1067,7 @@
         <ul class="text-gray-300 list-inside space-y-2">
           <li class="skill-li">
             <span class="skill-icon" style="background:linear-gradient(90deg,#f97316,#f59e0b);">
-              <!-- MySQL icon -->
+              
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M16.5 12.5c0 1.93-1.57 3.5-3.5 3.5s-3.5-1.57-3.5-3.5 1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5z"/>
                 <path d="M20 6H4c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 9c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
@@ -1078,7 +1078,7 @@
 
           <li class="skill-li">
             <span class="skill-icon" style="background:linear-gradient(90deg,#06b6d4,#3b82f6);">
-              <!-- Tailwind icon -->
+              
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 6c-2.67 0-4.33 1.33-5 4 1-1.33 2.17-1.83 3.5-1.5 1.53.47 2.05 1.8 3.13 1.8 1.13 0 1.87-.87 3.37-1.8 1.33-.6 2.5-.17 3.5 1.5-.67-2.67-2.33-4-5-4zm-5 8c-2.67 0-4.33 1.33-5 4 1-1.33 2.17-1.83 3.5-1.5 1.53.47 2.05 1.8 3.13 1.8 1.13 0 1.87-.87 3.37-1.8 1.33-.6 2.5-.17 3.5 1.5-.67-2.67-2.33-4-5-4z"/>
               </svg>
@@ -1088,7 +1088,7 @@
 
           <li class="skill-li">
             <span class="skill-icon" style="background:linear-gradient(90deg,#111827,#374151);">
-              <!-- Linux/Git icon -->
+              
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm4 0h-2V9h2v8z"/>
               </svg>
@@ -1100,7 +1100,7 @@
     </div>
   </section>
 
-  <!-- CHATBOT -->
+  
   <div class="chat-container">
     <div class="chatbot-icon" id="chat-toggle">
       <div class="chatbot-pulse"></div>
@@ -1134,7 +1134,7 @@
       </div>
 
       <div id="chat-messages" class="chat-messages">
-        <!-- Messages will be added here dynamically -->
+        
       </div>
 
       <div class="chat-input-area">
@@ -1148,7 +1148,7 @@
     </div>
   </div>
 
-  <!-- MODAL (centered) -->
+  
   <div id="modal-root" class="fixed inset-0 hidden items-center justify-center z-60 modal-backdrop">
     <div id="modal" class="max-w-xl w-full bg-gray-900 card rounded-xl p-6 transform scale-90 opacity-0">
       <div class="flex justify-between items-start">
@@ -1199,7 +1199,7 @@
   </div>
 
 <script>
-  /* ---------- Theme toggle ---------- */
+  
   const themeToggle = document.getElementById('theme-toggle');
   const themeSvg = document.getElementById('theme-svg');
   let isLight = localStorage.getItem('theme') === 'light';
@@ -1207,18 +1207,18 @@
   function applyTheme(){
     if(isLight){
       document.body.classList.add('light');
-      // Sun icon for light mode
+      
       themeSvg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-9H21m-18 0H3m15.36-6.36l-.7.7M6.34 17.66l-.7.7"/>';
       localStorage.setItem('theme', 'light');
     } else {
       document.body.classList.remove('light');
-      // Moon icon for dark mode
+      
       themeSvg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>';
       localStorage.setItem('theme', 'dark');
     }
   }
   
-  // Apply saved theme on page load
+  
   applyTheme();
   
   themeToggle.addEventListener('click', ()=> { 
@@ -1226,7 +1226,7 @@
     applyTheme(); 
   });
 
-  /* ---------- Premium Chatbot ---------- */
+  
   const chatToggle = document.getElementById('chat-toggle');
   const chatWindow = document.getElementById('chat-window');
   const chatClose = document.getElementById('chat-close');
@@ -1235,7 +1235,7 @@
   const chatMessages = document.getElementById('chat-messages');
   const notificationBadge = document.querySelector('.notification-badge');
 
-  // Enhanced knowledge base based on your resume
+  
   const KB = {
     'experience': "Priyasha worked as an AWS Cloud Intern at F13 Technologies from February to June 2025. She developed enterprise-level cloud solutions using AWS services with a focus on scalability and security. She built a tech stack recommendation system using Lambda, S3, and SageMaker for ML deployment, and created an HRMS from scratch with EC2, API Gateway, and Cognito for authentication.",
     'skills': "Priyasha is skilled in Python, Java, JavaScript, C++, HTML, CSS, and Shell Scripting. Her cloud expertise includes AWS services like EC2, S3, Lambda, RDS, VPC, CloudWatch, IAM, SNS, SageMaker, API Gateway, and Cognito. She's also proficient in DevOps tools like Docker, Docker Compose, CI/CD, Git, and GitHub.",
@@ -1248,7 +1248,7 @@
     'hi': "Hi there! I'm here to help you learn about Priyasha's qualifications and experience. Feel free to ask me anything about her background, skills, or projects."
   };
 
-  // Function to add a message to the chat
+  
   function addMessage(text, sender) {
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${sender}-message`;
@@ -1258,7 +1258,7 @@
     messageContent.textContent = text;
     messageDiv.appendChild(messageContent);
     
-    // Add timestamp
+    
     const timeDiv = document.createElement('div');
     timeDiv.className = 'message-time';
     const now = new Date();
@@ -1269,7 +1269,7 @@
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-  // Function to show typing indicator
+  
   function showTypingIndicator() {
     const typingDiv = document.createElement('div');
     typingDiv.className = 'typing-indicator';
@@ -1288,7 +1288,7 @@
     return typingDiv;
   }
 
-  // Function to remove typing indicator
+  
   function removeTypingIndicator() {
     const typingIndicator = document.getElementById('typing-indicator');
     if (typingIndicator) {
@@ -1296,25 +1296,25 @@
     }
   }
 
-  // Function to handle user message
+  
   function handleUserMessage(text) {
     addMessage(text, 'user');
     
-    // Remove notification badge after first interaction
+    
     if (notificationBadge) {
       notificationBadge.style.display = 'none';
     }
     
-    // Show typing indicator
+    
     const typingIndicator = showTypingIndicator();
     
-    // Simulate thinking time
+    
     setTimeout(() => {
       removeTypingIndicator();
       
       let reply = "I'm not sure about that. You can ask me about Priyasha's experience, skills, projects, education, achievements, certifications, or contact information.";
       
-      // Find the best matching topic
+      
       const lowerText = text.toLowerCase();
       for (let topic in KB) {
         if (lowerText.includes(topic)) {
@@ -1323,7 +1323,7 @@
         }
       }
       
-      // If no specific topic matched, try to find related keywords
+      
       if (reply === "I'm not sure about that. You can ask me about Priyasha's experience, skills, projects, education, achievements, certifications, or contact information.") {
         if (lowerText.includes('aws') || lowerText.includes('cloud')) {
           reply = KB['experience'] + " " + KB['skills'];
@@ -1336,7 +1336,7 @@
       
       addMessage(reply, 'bot');
       
-      // Add suggestion chips for follow-up questions
+      
       if (!lowerText.includes('contact') && !lowerText.includes('email') && !lowerText.includes('linkedin')) {
         const suggestionDiv = document.createElement('div');
         suggestionDiv.className = 'message-actions';
@@ -1361,10 +1361,10 @@
           lastMessage.appendChild(suggestionDiv);
         }
       }
-    }, 1000 + Math.random() * 1000); // Random delay between 1-2 seconds
+    }, 1000 + Math.random() * 1000); 
   }
 
-  // Initialize chat with welcome message
+  
   function initializeChat() {
     chatMessages.innerHTML = '';
     
@@ -1388,7 +1388,7 @@
     
     chatMessages.appendChild(welcomeDiv);
     
-    // Add event listeners to quick actions
+    
     document.querySelectorAll('.quick-action').forEach(button => {
       button.addEventListener('click', () => {
         const question = button.getAttribute('data-question');
@@ -1398,7 +1398,7 @@
     });
   }
 
-  // Chat toggle functionality
+  
   chatToggle.addEventListener('click', () => {
     chatWindow.classList.toggle('hidden');
     if (!chatWindow.classList.contains('hidden')) {
@@ -1412,7 +1412,7 @@
     }
   });
 
-  // Chat close functionality
+  
   chatClose.addEventListener('click', () => {
     gsap.to(chatWindow, { 
       scale: 0.7, 
@@ -1422,7 +1422,7 @@
     });
   });
 
-  // Chat form submission
+  
   chatSend.addEventListener('click', (e) => {
     e.preventDefault();
     const text = chatInput.value.trim();
@@ -1443,7 +1443,7 @@
     }
   });
 
-  /* ---------- Enhanced Projects Modal ---------- */
+  
   const projectsData = {
     p1: {
       title: 'Parse With Me',
@@ -1506,12 +1506,12 @@
       modalDesc.textContent = d.desc;
       modalRoleText.textContent = d.role;
       
-      // Add features
+      
       modalFeature1.textContent = d.features[0] || '';
       modalFeature2.textContent = d.features[1] || '';
       modalFeature3.textContent = d.features[2] || '';
       
-      // Add technologies
+      
       modalTech.innerHTML = '';
       d.tech.forEach(tech => {
         const badge = document.createElement('span');
@@ -1538,7 +1538,7 @@
   modalRoot.addEventListener('click', (e)=> { if(e.target === modalRoot) closeModal(); });
   window.addEventListener('keydown', (e)=> { if(e.key === 'Escape' && !modalRoot.classList.contains('hidden')) closeModal(); });
 
-  /* ---------- GSAP entrances ---------- */
+  
   gsap.from("#hero img", { opacity: 0, y: 20, duration: 0.9 });
   gsap.from("#hero h1", { opacity: 0, y: -40, duration: 1, delay: 0.12 });
   gsap.from("#hero p", { opacity: 0, y: 10, duration: 1, delay: 0.36 });
